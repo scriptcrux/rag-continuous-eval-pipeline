@@ -1,0 +1,31 @@
+# CloudPulse Enterprise RAG & Ragas Evaluation Framework
+# Core Framework & API
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.9.0
+pydantic-settings>=2.4.0
+python-dotenv>=1.0.0
+
+# LLM Orchestration & Evaluation
+ragas>=0.3.0
+langchain>=1.1.0
+langchain-core>=1.1.0
+langchain-community>=0.4.0
+langchain-text-splitters>=1.0.0
+langchain-openai>=1.1.0
+langchain-ollama>=1.0.0
+
+# Vector Database & Retrieval
+chromadb>=1.5.0
+numpy>=1.26.0
+scipy>=1.14.0
+rapidfuzz>=3.9.0
+
+# Testing & Quality Assurance
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+requests>=2.31.0
+httpx>=0.27.0
+rich>=13.8.0
+datasets>=3.0.0
+pandas>=2.2.0

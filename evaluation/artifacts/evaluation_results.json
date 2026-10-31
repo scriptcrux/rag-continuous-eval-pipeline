@@ -1,0 +1,221 @@
+{
+  "provider": "mock",
+  "total_cases": 10,
+  "overall_pass": true,
+  "duration_seconds": 0.01,
+  "latency": {
+    "p50_ms": 0.36,
+    "p95_ms": 0.56
+  },
+  "multi_turn_adherence": 1.0,
+  "metrics": {
+    "faithfulness": {
+      "name": "Faithfulness",
+      "score": 1.0,
+      "threshold": 0.85,
+      "passed": true
+    },
+    "response_relevance": {
+      "name": "Response Relevance",
+      "score": 0.8056,
+      "threshold": 0.8,
+      "passed": true
+    },
+    "context_precision": {
+      "name": "Context Precision",
+      "score": 0.875,
+      "threshold": 0.8,
+      "passed": true
+    },
+    "context_recall": {
+      "name": "Context Recall",
+      "score": 0.9934,
+      "threshold": 0.8,
+      "passed": true
+    },
+    "negative_refusal_rate": {
+      "name": "Negative Refusal Rate",
+      "score": 1.0,
+      "threshold": 1.0,
+      "passed": true
+    }
+  },
+  "cases": [
+    {
+      "test_id": "tc_001",
+      "question": "What is the initial response SLA for a Severity 1 incident?",
+      "response": "The initial response SLA for a Severity 1 (Sev-1) incident is 5 minutes from automated alert or customer escalation.",
+      "reference": "The initial response SLA for a Severity 1 (Sev-1) incident is 5 minutes from automated alert or customer escalation.",
+      "retrieved_contexts": [
+        "- **Severity 2 (Major / Sev-2)**:\n  - Definition: Significant degradation of system performance or partial failure of non-critical subsystems with acceptable customer workaround available.\n  - Initial Response SLA: 15 minutes.\n  - Status Page Update Frequency: Every 30 minutes.\n  - Incident Commander: Tech Lead or Senior On-Call Engineer.\n- **Severity 3 (Minor / Sev-3)**:\n  - Definition: Minor glitch, localized internal tool failure, or cosmetic bug with zero impact to customer production traffic.\n  - Initial Response SLA: 2 hours during normal business operations.",
+        "### Incident Severity Levels\n- **Severity 1 (Critical / Sev-1)**:\n  - Definition: Complete outage or catastrophic degradation affecting core transaction processing, data loss risks, or customer-facing services impacting more than 5% of active users.\n  - Initial Response SLA: 5 minutes from automated alert or customer escalation.\n  - Status Page Update Frequency: Every 15 minutes until resolution.\n  - Incident Commander (IC): VP of Engineering or Designated Principal On-Call Engineer.\n- **Severity 2 (Major / Sev-2)**:",
+        "# CloudPulse Enterprise Incident Response Playbook"
+      ],
+      "latency_ms": 0.6895000115036964,
+      "is_adversarial": false,
+      "scores": {
+        "context_recall": 1.0,
+        "context_precision": 0.8182,
+        "faithfulness": 1.0,
+        "response_relevance": 0.9824
+      }
+    },
+    {
+      "test_id": "tc_002",
+      "question": "Within what timeframe must an incident post-mortem retrospective meeting be scheduled?",
+      "response": "A blameless post-mortem retrospective meeting must be scheduled within 48 hours of incident closure.",
+      "reference": "A blameless post-mortem retrospective meeting must be scheduled within 48 hours of incident closure.",
+      "retrieved_contexts": [
+        "## 4. Post-Mortem and Root Cause Analysis (RCA) Policy\n- Every Sev-1 and Sev-2 incident requires a blameless post-mortem retrospective meeting scheduled within **48 hours** of incident closure.\n- The completed RCA document must be signed off by the Incident Commander and published to the company knowledge portal within **5 business days**.\n- Remediation action items (preventative Jira tickets) must be prioritized into the current sprint and must have a completion deadline not exceeding 30 days.",
+        "## 3. Financial Service Credits for SLA Breaches\nIf the monthly uptime percentage drops below the guaranteed threshold of 99.95%, enterprise customers are entitled to claim financial credits applied to their subsequent billing invoice:\n- **99.0% to < 99.95% uptime**: 10% credit of monthly recurring charges (MRC).\n- **95.0% to < 99.0% uptime**: 25% credit of monthly recurring charges (MRC).\n- **< 95.0% uptime**: 50% credit of monthly recurring charges (MRC).",
+        "## 3. Communication and War Room Rules\n- When a Sev-1 is declared, the primary responder must immediately initialize a dedicated Zoom bridge titled `war-room-[incident-id]` and mirror all status updates to Slack channel `#cloudpulse-incidents`.\n- Microphones must remain muted unless actively reporting a finding, mitigation action, or handoff.\n- Speculative conversations must be moved to chat threads; verbal communications are reserved for validated metrics and execution commands."
+      ],
+      "latency_ms": 0.39389985613524914,
+      "is_adversarial": false,
+      "scores": {
+        "context_recall": 1.0,
+        "context_precision": 0.5455,
+        "faithfulness": 1.0,
+        "response_relevance": 0.8895
+      }
+    },
+    {
+      "test_id": "tc_003",
+      "question": "What multi-factor authentication methods are allowed, and which methods are prohibited?",
+      "response": "Allowed MFA methods are hardware security keys (FIDO2 / WebAuthn, such as YubiKey) or TOTP authenticator apps. SMS and voice-call verification are explicitly prohibited due to SIM-swapping vulnerabilities.",
+      "reference": "Allowed MFA methods are hardware security keys (FIDO2 / WebAuthn, such as YubiKey) or TOTP authenticator apps. SMS and voice-call verification are explicitly prohibited due to SIM-swapping vulnerabilities.",
+      "retrieved_contexts": [
+        "## 2. Authentication and Identity Management\n- **Multi-Factor Authentication (MFA)**:\n  - MFA is mandatory for all employee accounts, VPN gateways, cloud provider consoles (AWS/GCP), and code repositories.\n  - Allowed MFA methods: Hardware security keys (FIDO2 / WebAuthn, such as YubiKey) or time-based one-time password (TOTP) authenticator apps.\n  - SMS/Voice-call verification is explicitly prohibited due to SIM-swapping vulnerabilities.\n- **Session Lifetimes & Idle Timeouts**:\n  - Web console access sessions expire after **8 hours** maximum."
+      ],
+      "latency_ms": 0.3684000112116337,
+      "is_adversarial": false,
+      "scores": {
+        "context_recall": 1.0,
+        "context_precision": 1.0,
+        "faithfulness": 1.0,
+        "response_relevance": 0.5304
+      }
+    },
+    {
+      "test_id": "tc_004",
+      "question": "How long must security audit logs be retained for SOC 2 compliance?",
+      "response": "Security audit logs must be retained for a minimum of 7 years to satisfy SOC 2 and federal regulatory compliance audits.",
+      "reference": "Security audit logs must be retained for a minimum of 7 years to satisfy SOC 2 and federal regulatory compliance audits.",
+      "retrieved_contexts": [
+        "## 4. Audit Logging and Data Retention Rules\n- **Security Audit Logs**:\n  - All authentication logs, administrative actions, API gateway access logs, and firewall ingress/egress logs must be forwarded in real time to the centralized immutable SIEM cluster.\n  - Security audit logs must be retained for a minimum of **7 years** to satisfy SOC 2 and federal regulatory compliance audits.\n- **Customer Application Data**:\n  - Standard customer transactional records are retained for 3 years following account closure unless an immediate GDPR \"Right to be Forgotten\" deletion request is submitted.",
+        "# CloudPulse Enterprise Security and Compliance Policy\n\n## 1. Compliance Framework Standards\nCloudPulse maintains continuous compliance certifications under **SOC 2 Type II**, **ISO/IEC 27001:2022**, and **HIPAA HITECH** security rules. All infrastructure, employee accounts, and automated deployment pipelines must strictly adhere to these compliance baselines.",
+        "## 4. Backup Strategies and Storage Lifecycle\n- **Database Snapshots**:\n  - Full automated snapshot backups are created daily at **01:00 UTC**.\n  - Transaction logs (WAL) are streamed continuously every 5 minutes to S3 Glacier Instant Retrieval.\n  - Database daily snapshots are retained for **35 days**.\n- **Cold Storage Archival**:\n  - Raw system metrics and diagnostic logs older than 90 days are transitioned automatically to S3 Glacier Deep Archive."
+      ],
+      "latency_ms": 0.38970005698502064,
+      "is_adversarial": false,
+      "scores": {
+        "context_recall": 1.0,
+        "context_precision": 0.8182,
+        "faithfulness": 1.0,
+        "response_relevance": 0.8785
+      }
+    },
+    {
+      "test_id": "tc_005",
+      "question": "What are the target Recovery Time Objective (RTO) and Recovery Point Objective (RPO) during regional failover?",
+      "response": "The Recovery Time Objective (RTO) maximum acceptable downtime is 15 minutes, and the Recovery Point Objective (RPO) maximum allowable data loss window is 5 minutes.",
+      "reference": "The Recovery Time Objective (RTO) maximum acceptable downtime is 15 minutes, and the Recovery Point Objective (RPO) maximum allowable data loss window is 5 minutes.",
+      "retrieved_contexts": [
+        "## 3. Disaster Recovery (DR) Objectives\n- **Recovery Time Objective (RTO)**:\n  - The target maximum acceptable downtime during regional failover is **15 minutes**.\n  - Automated Route53 DNS health checks trigger regional traffic rerouting if the primary region fails health checks for 3 consecutive 30-second cycles.\n- **Recovery Point Objective (RPO)**:\n  - The maximum allowable data loss window is **5 minutes**.\n  - Aurora PostgreSQL global databases maintain asynchronous continuous replication with replica lag monitored strictly under 1,000 milliseconds."
+      ],
+      "latency_ms": 0.3608998376876116,
+      "is_adversarial": false,
+      "scores": {
+        "context_recall": 1.0,
+        "context_precision": 1.0,
+        "faithfulness": 1.0,
+        "response_relevance": 0.7217
+      }
+    },
+    {
+      "test_id": "tc_006",
+      "question": "What is the target CPU and memory utilization threshold for Horizontal Pod Autoscaling?",
+      "response": "The target CPU utilization threshold is 70% and the target memory utilization threshold is 80%.",
+      "reference": "The target CPU utilization threshold is 70% and the target memory utilization threshold is 80%.",
+      "retrieved_contexts": [
+        "## 2. Container Orchestration & Autoscaling\n- **Kubernetes (EKS)**:\n  - Microservices run in managed Kubernetes (Amazon EKS) version 1.30+.\n  - Nodes use AWS Graviton ARM64 compute instances (`c7g.2xlarge`) for power efficiency and cost optimization.\n- **Horizontal Pod Autoscaling (HPA)**:\n  - Target CPU utilization threshold is set to **70%**.\n  - Target memory utilization threshold is set to **80%**.\n  - Minimum pod replica count is 3 per service across distinct Availability Zones (AZs) for high availability.\n  - Maximum pod replica count during peak flash sales is 60 replicas."
+      ],
+      "latency_ms": 0.3121001645922661,
+      "is_adversarial": false,
+      "scores": {
+        "context_recall": 1.0,
+        "context_precision": 1.0,
+        "faithfulness": 1.0,
+        "response_relevance": 0.7683
+      }
+    },
+    {
+      "test_id": "tc_007",
+      "question": "What is the Monthly Uptime Percentage commitment and what service credit applies for uptime below 95%?",
+      "response": "The Monthly Uptime Percentage commitment is at least 99.95%, and if uptime drops below 95.0%, a 50% monthly recurring charges credit applies.",
+      "reference": "The Monthly Uptime Percentage commitment is at least 99.95%, and if uptime drops below 95.0%, a 50% monthly recurring charges credit applies.",
+      "retrieved_contexts": [
+        "## 1. Availability Guarantees\nCloudPulse commits to providing enterprise customers with an Monthly Uptime Percentage commitment of at least **99.95%** across all production API services.",
+        "## 3. Financial Service Credits for SLA Breaches\nIf the monthly uptime percentage drops below the guaranteed threshold of 99.95%, enterprise customers are entitled to claim financial credits applied to their subsequent billing invoice:\n- **99.0% to < 99.95% uptime**: 10% credit of monthly recurring charges (MRC).\n- **95.0% to < 99.0% uptime**: 25% credit of monthly recurring charges (MRC).\n- **< 95.0% uptime**: 50% credit of monthly recurring charges (MRC).",
+        "### Service Credit Claims Procedure:\n- Customers must submit a written credit claim ticket via the support portal within **30 calendar days** following the end of the affected billing month.\n- Service credits cannot be redeemed for cash or refunded; they are exclusively applicable against future subscription invoices."
+      ],
+      "latency_ms": 0.35140011459589005,
+      "is_adversarial": false,
+      "scores": {
+        "context_recall": 0.9474,
+        "context_precision": 0.8182,
+        "faithfulness": 1.0,
+        "response_relevance": 0.919
+      }
+    },
+    {
+      "test_id": "tc_008",
+      "question": "When are standard weekly maintenance windows scheduled?",
+      "response": "Standard weekly maintenance windows are reserved on Sundays between 02:00 UTC and 04:00 UTC.",
+      "reference": "Standard weekly maintenance windows are reserved on Sundays between 02:00 UTC and 04:00 UTC.",
+      "retrieved_contexts": [
+        "## 2. Maintenance Windows\n- **Standard Maintenance Schedule**:\n  - Weekly maintenance windows are reserved on **Sundays between 02:00 UTC and 04:00 UTC**.\n  - System upgrades during maintenance windows utilize zero-downtime rolling canary deployments to prevent customer impact.\n- **Emergency Security Patching**:\n  - In the event of critical zero-day vulnerabilities (CVSS score >= 9.0), emergency patches may be deployed with an expedited 4-hour advance customer notification."
+      ],
+      "latency_ms": 0.2880000974982977,
+      "is_adversarial": false,
+      "scores": {
+        "context_recall": 1.0,
+        "context_precision": 1.0,
+        "faithfulness": 1.0,
+        "response_relevance": 0.7553
+      }
+    },
+    {
+      "test_id": "tc_neg_001",
+      "question": "What is the recipe for baking chocolate cake at high altitude?",
+      "response": "I do not have sufficient information in the knowledge base to answer this question.",
+      "reference": "I do not have sufficient information in the knowledge base to answer this question.",
+      "retrieved_contexts": [],
+      "latency_ms": 0.22909999825060368,
+      "is_adversarial": true,
+      "scores": {
+        "negative_refusal": 1.0,
+        "faithfulness": 1.0,
+        "response_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "test_id": "tc_neg_002",
+      "question": "When will SpaceX launch the first manned crew to Mars?",
+      "response": "I do not have sufficient information in the knowledge base to answer this question.",
+      "reference": "I do not have sufficient information in the knowledge base to answer this question.",
+      "retrieved_contexts": [],
+      "latency_ms": 0.2896999940276146,
+      "is_adversarial": true,
+      "scores": {
+        "negative_refusal": 1.0,
+        "faithfulness": 1.0,
+        "response_relevance": 1.0,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      }
+    }
+  ]
+}

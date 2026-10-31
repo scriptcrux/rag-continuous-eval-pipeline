@@ -1,0 +1,114 @@
+{
+  "description": "CloudPulse Enterprise Golden Benchmark Evaluation Dataset",
+  "version": "1.0.0",
+  "single_turn_samples": [
+    {
+      "id": "tc_001",
+      "category": "incident_management",
+      "question": "What is the initial response SLA for a Severity 1 incident?",
+      "ground_truth": "The initial response SLA for a Severity 1 (Sev-1) incident is 5 minutes from automated alert or customer escalation.",
+      "expected_source": "incident_response_playbook.md",
+      "is_adversarial": false
+    },
+    {
+      "id": "tc_002",
+      "category": "incident_management",
+      "question": "Within what timeframe must an incident post-mortem retrospective meeting be scheduled?",
+      "ground_truth": "A blameless post-mortem retrospective meeting must be scheduled within 48 hours of incident closure.",
+      "expected_source": "incident_response_playbook.md",
+      "is_adversarial": false
+    },
+    {
+      "id": "tc_003",
+      "category": "security_compliance",
+      "question": "What multi-factor authentication methods are allowed, and which methods are prohibited?",
+      "ground_truth": "Allowed MFA methods are hardware security keys (FIDO2 / WebAuthn, such as YubiKey) or TOTP authenticator apps. SMS and voice-call verification are explicitly prohibited due to SIM-swapping vulnerabilities.",
+      "expected_source": "security_compliance_policy.md",
+      "is_adversarial": false
+    },
+    {
+      "id": "tc_004",
+      "category": "security_compliance",
+      "question": "How long must security audit logs be retained for SOC 2 compliance?",
+      "ground_truth": "Security audit logs must be retained for a minimum of 7 years to satisfy SOC 2 and federal regulatory compliance audits.",
+      "expected_source": "security_compliance_policy.md",
+      "is_adversarial": false
+    },
+    {
+      "id": "tc_005",
+      "category": "infrastructure",
+      "question": "What are the target Recovery Time Objective (RTO) and Recovery Point Objective (RPO) during regional failover?",
+      "ground_truth": "The Recovery Time Objective (RTO) maximum acceptable downtime is 15 minutes, and the Recovery Point Objective (RPO) maximum allowable data loss window is 5 minutes.",
+      "expected_source": "cloud_infrastructure_guide.md",
+      "is_adversarial": false
+    },
+    {
+      "id": "tc_006",
+      "category": "infrastructure",
+      "question": "What is the target CPU and memory utilization threshold for Horizontal Pod Autoscaling?",
+      "ground_truth": "The target CPU utilization threshold is 70% and the target memory utilization threshold is 80%.",
+      "expected_source": "cloud_infrastructure_guide.md",
+      "is_adversarial": false
+    },
+    {
+      "id": "tc_007",
+      "category": "sla",
+      "question": "What is the Monthly Uptime Percentage commitment and what service credit applies for uptime below 95%?",
+      "ground_truth": "The Monthly Uptime Percentage commitment is at least 99.95%, and if uptime drops below 95.0%, a 50% monthly recurring charges credit applies.",
+      "expected_source": "service_level_agreements.md",
+      "is_adversarial": false
+    },
+    {
+      "id": "tc_008",
+      "category": "sla",
+      "question": "When are standard weekly maintenance windows scheduled?",
+      "ground_truth": "Standard weekly maintenance windows are reserved on Sundays between 02:00 UTC and 04:00 UTC.",
+      "expected_source": "service_level_agreements.md",
+      "is_adversarial": false
+    },
+    {
+      "id": "tc_neg_001",
+      "category": "negative_guardrail",
+      "question": "What is the recipe for baking chocolate cake at high altitude?",
+      "ground_truth": "I do not have sufficient information in the knowledge base to answer this question.",
+      "expected_source": "none",
+      "is_adversarial": true
+    },
+    {
+      "id": "tc_neg_002",
+      "category": "negative_guardrail",
+      "question": "When will SpaceX launch the first manned crew to Mars?",
+      "ground_truth": "I do not have sufficient information in the knowledge base to answer this question.",
+      "expected_source": "none",
+      "is_adversarial": true
+    }
+  ],
+  "multi_turn_samples": [
+    {
+      "id": "mt_001",
+      "dialogue": [
+        {
+          "role": "user",
+          "content": "What is the initial response SLA for a Sev-1 incident?"
+        },
+        {
+          "role": "assistant",
+          "content": "The initial response SLA for a Severity 1 (Sev-1) incident is 5 minutes from automated alert or customer escalation."
+        },
+        {
+          "role": "user",
+          "content": "How often should status page updates be posted during this incident?"
+        },
+        {
+          "role": "assistant",
+          "content": "Status page updates must be posted every 15 minutes until resolution for Severity 1 incidents."
+        }
+      ],
+      "reference_topics": [
+        "Severity 1 incident initial response SLA is 5 minutes",
+        "Status page updates for Sev-1 incidents must occur every 15 minutes"
+      ]
+    }
+  ]
+}
+
